@@ -4,15 +4,16 @@ import image1 from "./../../aset/image/lock-alt-svgrepo-com.svg"
 import image2 from "./../../aset/image/user-10-svgrepo-com.svg"
 import image3 from "./../../aset/image/user-svgrepo-com.svg"
 import { loginpage } from "../../store/slices/slices";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 
 
 
 
 
 export function LoginPage(){
-        const dispacch=useDispatch();
-        
+
+    const dispacch=useDispatch();
+    let errors=useSelector(state=>state.Table.errors);    
         
 
 
@@ -42,7 +43,10 @@ export function LoginPage(){
                     <div className="Password">
                         <label form="Password"><img className="Img ,ImgPas" src={image1} alt="Not Load"/></label>
                         <input type="text" name="password" required placeholder="Password" />
+                        <small className="Errors">{errors}</small>
                     </div>
+
+                  
 
                     <button type="submit" className="BtnLogin" >Login</button>
 

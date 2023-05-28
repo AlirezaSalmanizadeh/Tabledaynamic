@@ -1,9 +1,8 @@
 import React,{useEffect, useState} from "react";
 import axios from "axios";
 import { useSelector,useDispatch } from "react-redux";
-import { getdata}from './../../store/slices/slices'
-import { getsavedata}from './../../store/slices/slices'
-import {Alert,AlertIcon,AlertTitle,AlertDescription,} from '@chakra-ui/react'
+import { getsavedata,getdata,loadset}from './../../store/slices/slices'
+import {Message} from "./../message/message"
 
 import "./pageination.css"
 
@@ -19,7 +18,7 @@ export function Pageination(props){
     let datalist=useSelector(state=>state.Table.list2);
     datalist=datalist.flat();
     // console.log(datalist)
-    let eror=false
+    let eror=useSelector(state=>state.Table.load);
     let list=[];
     let finalIndexes=[];
     let tableRowsPage=20;
@@ -40,12 +39,10 @@ export function Pageination(props){
   }
   
   const loaddata= ()=>{
-    eror=true
+
     axios.get('https://table3-ef050-default-rtdb.asia-southeast1.firebasedatabase.app/list.json')
       .then(result=>( Object.entries(result.data).map(([key,val])=>{return getValue(val)})))
-      .catch(()=>alert("data not loading"))
-
-      eror=false
+      .catch ((er)=>{dispach(loadset(er))})
   }
    
   const getValue= async (val)=>{
@@ -144,29 +141,33 @@ for (let i = 1; i <= Math.ceil(totalData / tableRowsPage); i++) {
 
 
     return(
-      <section className="FooterTable">
+      <>
+        {eror==false
+          ?(<section className="FooterTable">
+              
+          <div className="Pageination">
+                
+            <ul className="ParentLink">
+                        
+              {pagenumber<=5
+                ?pagenumber.map(item=>{return <li className={`Page ${curentpage==item.i ?btnactive :null}`}  onClick={()=>item.i!==undefined ?getdatapage(item.i) :getdatapage(curentpage)}>{item.i}</li>})
+                :screen() 
+              } 
+            </ul>
+                
+          </div>
+
+          <div className="SaveLoad" >
             
-        <div className="Pageination">
-              
-          <ul className="ParentLink">
-                      
-            {pagenumber<=5
-              ?pagenumber.map(item=>{return <li className={`Page ${curentpage==item.i ?btnactive :null}`}  onClick={()=>item.i!==undefined ?getdatapage(item.i) :getdatapage(curentpage)}>{item.i}</li>})
-              :screen() 
-            } 
-          </ul>
-              
-        </div>
+            <button className='BtnDataSave' onClick={()=>savedata()} >Save Data</button>
+            <button className='BtnDataLoad' onClick={()=>loaddata()}>load Data</button>
 
-        <div className="SaveLoad" >
-          
-          <button className='BtnDataSave' onClick={()=>savedata()} >Save Data</button>
-          <button className='BtnDataLoad' onClick={()=>loaddata()}>load Data</button>
+          </div>
 
-        </div>
-
-      </section>)
-    
-
+          </section>)
+          :<Message/> 
+        }
+      </>
+)
 
 }

@@ -39,7 +39,7 @@
 
 .Password {
     margin-top: 10%;
-    margin-bottom: 13%;
+    margin-bottom: 10%;
 }
 
 .Username label {
@@ -108,6 +108,12 @@
 .BtnLogin:hover {
     cursor: pointer;
     background: linear-gradient(270deg, rgba(91, 204, 155, 0.3982843137254902) 0%, rgba(33, 180, 182, 1) 100%);
+}
+
+.Errors {
+    color: red;
+    margin-top: 3%;
+    height: 1vh;
 }
 
 @media (min-width:1400px) {

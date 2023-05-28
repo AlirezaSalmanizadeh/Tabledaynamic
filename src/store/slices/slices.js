@@ -10,7 +10,9 @@ const  initialState={
      list3:[
         {username:"admin",password:"admin"}
      ],
-     login:false
+     login:false,
+     errors:"",
+     load:false
 }
 
 
@@ -153,14 +155,17 @@ const Slice=createSlice({
                 state.list3.map(item=>
                     item.username===actions.payload[0] && item.password===actions.payload[1]
                         ?state.login=true
-                        :null
+                        :state.errors="Username or Password incurect"
                     )
+        },
+        loadset:(state)=>{
+            state.load=!state.load
         }
 
     }
 });
 
 
-export const{deletetable,edittable,edittext, addtdtable , addtexttd, setdragover,deletetdtable, getdata,getsavedata,loginpage}=Slice.actions;
+export const{deletetable,edittable,edittext, addtdtable , addtexttd, setdragover,deletetdtable, getdata,getsavedata,loginpage,loadset}=Slice.actions;
 
 export default Slice.reducer;
