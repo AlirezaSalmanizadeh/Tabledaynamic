@@ -1,12 +1,14 @@
 import React,{useRef,useEffect} from "react";
 import "./message.css"
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import {loadset} from './../../store/slices/slices'
 import image1 from "./../../aset/image/close-circle-1-svgrepo-com.svg"
 
 
-export function Message(){
+
+export function Message(props){
     const dispatch=useDispatch();
+    let dataselectio=useSelector(state=>state.Table.dataselect)
 
     const ref = useRef()
   
@@ -31,7 +33,9 @@ export function Message(){
     }
 
 
-    return(
+
+    if(dataselectio==1){
+      return(
 
         <div className="Message">
 
@@ -47,7 +51,48 @@ export function Message(){
             </div>
         </div>
 
-    )
+      )
+}
+
+if(dataselectio==2){
+  return(
+
+    <div className="Message">
+
+        <div className="TextMessage" ref={ref}>
+          <div className="Title">
+            <h2>Not Save Data</h2>
+            <img src={image1} className="Img" alt="Close" onClick={()=>closemessage()}/>
+          </div>
+          
+          <hr/>
+          <p>Please check conection or get data link.</p>
+          
+        </div>
+    </div>
+
+  )
+}
+
+if(dataselectio==3){
+  return(
+
+    <div className="Message">
+
+        <div className="TextMessages" ref={ref}>
+          <div className="Title">
+            <h2>Save Data sucssesfull</h2>
+            <img src={image1} className="Img" alt="Close" onClick={()=>closemessage()}/>
+          </div>
+          
+        </div>
+    </div>
+
+  )
+}
+  
+
+    
 
 
 }

@@ -31,10 +31,11 @@ export function Pageination(props){
     const savedata= ()=>{
         if(datalist.length>0){
         axios.put('https://table3-ef050-default-rtdb.asia-southeast1.firebasedatabase.app/list.json',datalist)
-        .then (alert("save Data sucssesfull"))
+        .then (re=>dispach(loadset(3)))
+        .catch(er=> dispach(loadset(2)))
       }
       else{
-        alert("You are need to data")
+        dispach(loadset(2))
       }
   }
   
@@ -42,7 +43,9 @@ export function Pageination(props){
 
     axios.get('https://table3-ef050-default-rtdb.asia-southeast1.firebasedatabase.app/list.json')
       .then(result=>( Object.entries(result.data).map(([key,val])=>{return getValue(val)})))
-      .catch ((er)=>{dispach(loadset(er))})
+      .catch ((er)=>{
+        dispach(loadset(1))
+      })
   }
    
   const getValue= async (val)=>{

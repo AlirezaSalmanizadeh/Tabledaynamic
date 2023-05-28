@@ -36,3 +36,12 @@
     display: flex;
     justify-content: space-between;
 }
+
+.TextMessages {
+    background: #88e95b;
+    width: 30%;
+    padding: 1%;
+    padding-top: 0;
+    color: white;
+    border-radius: 25px;
+}

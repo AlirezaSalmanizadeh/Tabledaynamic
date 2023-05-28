@@ -12,7 +12,8 @@ const  initialState={
      ],
      login:false,
      errors:"",
-     load:false
+     load:false,
+     dataselect:0
 }
 
 
@@ -158,8 +159,9 @@ const Slice=createSlice({
                         :state.errors="Username or Password incurect"
                     )
         },
-        loadset:(state)=>{
-            state.load=!state.load
+        loadset:(state,actions)=>{
+            state.load=!state.load;
+            state.dataselect=actions.payload
         }
 
     }
