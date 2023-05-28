@@ -1,0 +1,138 @@
+.Img {
+    width: 16px;
+    height: 16px;
+}
+
+.Form {
+    background: linear-gradient(45deg, rgba(34, 193, 195, 1) 0%, rgba(45, 253, 226, 0.6139705882352942) 100%);
+}
+
+.FormSection {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 100px;
+    justify-content: center;
+}
+
+.UserLogin {
+    margin-bottom: 10%;
+}
+
+.Login {
+    position: relative;
+    width: 70%;
+    right: 17px;
+}
+
+.Username,
+.Password {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+.Password {
+    margin-top: 10%;
+    margin-bottom: 13%;
+}
+
+.Username label {
+    position: absolute;
+    display: flex;
+    top: 7px;
+    left: 2px;
+}
+
+.Username input {
+    line-height: 2.5;
+    width: 100%;
+    border: none;
+    border-bottom: 1px rgb(196, 196, 196) solid;
+    background-color: transparent;
+    padding-left: 10%;
+}
+
+.Username input::placeholder {
+    color: black;
+}
+
+.ImgUser {
+    margin-right: 3px;
+}
+
+.Password label {
+    position: absolute;
+    display: flex;
+    top: 7px;
+    left: 2px;
+}
+
+.Password input {
+    line-height: 2.5;
+    width: 100%;
+    border: none;
+    border-bottom: 1px rgb(196, 196, 196) solid;
+    background-color: transparent;
+    padding-left: 10%;
+}
+
+.Password input::placeholder {
+    color: black;
+}
+
+.ImgPass {
+    margin-right: 3px;
+}
+
+.BtnLogin {
+    width: 112%;
+    line-height: 3;
+    margin-bottom: 10%;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(270deg, rgba(98, 221, 168, 0.3982843137254902) 0%, rgba(34, 193, 195, 1) 100%);
+}
+
+.Password input:focus,
+.Username input:focus {
+    outline: none;
+    box-shadow: 1px 3px 12px rgb(98 221 167 / 70%);
+}
+
+.BtnLogin:hover {
+    cursor: pointer;
+    background: linear-gradient(270deg, rgba(91, 204, 155, 0.3982843137254902) 0%, rgba(33, 180, 182, 1) 100%);
+}
+
+@media (min-width:1400px) {
+    .FormSection {
+        height: 600px;
+    }
+}
+
+@media (max-width:1440px) {
+    .FormSection {
+        width: 45%;
+        height: 530px;
+    }
+}
+
+@media (max-width:1000px) {
+    .FormSection {
+        width: 60%;
+        height: 490px;
+    }
+}
+
+@media (max-width:768px) {
+    .FormSection {
+        width: 90%;
+        height: 530px;
+    }
+}

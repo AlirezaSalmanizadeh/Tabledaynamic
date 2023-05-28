@@ -1,0 +1,36 @@
+.Page {
+    display: flex;
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer;
+    width: 20px;
+    justify-content: center;
+}
+
+.ParentLink {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.FooterTable {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Pageination,
+.SaveLoad {
+    width: 100%;
+}
+
+.ParentLink .Page:hover:not(.Active) {
+    background-color: #ddd
+}
+
+.Active {
+    background-color: #59947D;
+    color: white;
+}

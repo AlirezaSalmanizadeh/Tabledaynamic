@@ -1,0 +1,23 @@
+.ImgDelete,
+.ImgEdit,
+.ImgAdd {
+    width: 16px;
+    height: 16px;
+    margin-left: 20px;
+    transition: 500ms;
+}
+
+.Img {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.Img img:hover {
+    cursor: pointer;
+    transform: scale(1.3);
+}
+
+.react-confirm-alert-button-group>button[label='yes'] {
+    background: rgb(129, 27, 27)!important;
+}
