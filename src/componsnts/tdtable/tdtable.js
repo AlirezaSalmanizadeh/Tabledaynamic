@@ -18,7 +18,7 @@ export function TdTable(props){
 
 
    
-   DataTd=DataTd.map(item=>item={id:item.id,name:item.name,quantitiy:item.quantitiy});
+   DataTd=DataTd.map(item=>item={row:item.row,name:item.name,quantitiy:item.quantitiy});
  
     return(
         <>
@@ -27,7 +27,7 @@ export function TdTable(props){
               {Object.entries(state).map(([k, v], idx) =>(
                  <td key={v} >{state[drag[idx]]}</td>
                 ))}
-                <td className="Img"><ImgBtn  data={state.id}/></td>
+                <td className="Img"><ImgBtn  data={state.row}/></td>
             </tr>
           )}
         </>

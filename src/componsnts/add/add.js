@@ -4,8 +4,7 @@ import { useDispatch } from "react-redux";
 import {addtexttd,addtdtable} from './../../store/slices/slices'
 
 
-export function AddTableText({date}){
-
+export function AddTableText(){
 
     const ref = useRef()
   
@@ -13,7 +12,7 @@ export function AddTableText({date}){
       const checkClickOutside = e => {
       
         if (ref.current && !ref.current.contains(e.target)) {
-            dispatch(addtdtable(date[0].id))
+            dispatch(addtdtable())
         }
       }
   
@@ -32,7 +31,7 @@ export function AddTableText({date}){
 
 
 
-    const [state,setstate]=useState({id:date[0].id,name:'',quantitiy:'',done:false,add:false,delete:false});
+    const [state,setstate]=useState({row:0,name:'',quantitiy:'',done:false,delete:false});
     const dispatch=useDispatch();
 
     const addtexthandler=(item)=>{
@@ -68,7 +67,7 @@ export function AddTableText({date}){
                 <input type="number" name="quantitiy" onChange={(item)=>textchang2(item)} required />
                 </div>
                 <button type="submit" className="BtnSubmit" onClick={()=>addtexthandler(state) } >Add</button>
-                <button type="submit" className="BtnSubmitClose" onClick={()=>addtexthandlerclose(date[0].id) } >Close</button>
+                <button type="submit" className="BtnSubmitClose" onClick={()=>addtexthandlerclose() } >Close</button>
                 </div>
         </div>
     )

@@ -16,7 +16,7 @@ export function EditTableText({date}){
       const checkClickOutside = e => {
       
         if (ref.current && !ref.current.contains(e.target)) {
-            dispatch(edittable(date[0].id))
+            dispatch(edittable(date[0].row))
         }
       }
   
@@ -32,7 +32,7 @@ export function EditTableText({date}){
 
     
 
-    const [state,setstate]=useState({id:date[0].id,name:date[0].name,quantitiy:date[0].quantitiy,done:false,add:false,delete:false});
+    const [state,setstate]=useState({row:date[0].row,name:date[0].name,quantitiy:date[0].quantitiy,done:false,delete:false});
 
     const dispatch=useDispatch();
 
@@ -54,7 +54,7 @@ export function EditTableText({date}){
     return(
         <div className="Form" id="Form" >
             <div className="DivForm" ref={ref} >
-                <h1>Edit Column {date[0].id} at Table </h1>
+                <h1>Edit Column {date[0].row} at Table </h1>
             <div className="Name">
                 <label htmlFor="name">Name</label>
                 <input type="text" name="name" onChange={(item)=>textchang(item)}  value={state.name} required />
@@ -64,7 +64,7 @@ export function EditTableText({date}){
                 <input type="number" name="quantitiy" onChange={(item)=>textchang2(item)} value={state.quantitiy}  required/>
                 </div>
                 <button type="submit" className="BtnSubmit" onClick={()=>edittexthandler(state) } >Edit</button>
-                <button type="submit" className="BtnSubmitClose" onClick={()=>edittexthandlerclose(date[0].id) } >Close</button>
+                <button type="submit" className="BtnSubmitClose" onClick={()=>edittexthandlerclose(date[0].row) } >Close</button>
                 </div>
         </div>
     )

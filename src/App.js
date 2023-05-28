@@ -9,11 +9,10 @@ import {LoginPage} from "./componsnts/loginpage/login"
 
  
 function App() {
-
+    let add= useSelector(state=>{return state.Table.add});
     let value=useSelector(state=>{return state.Table.list});
     value=value.flat();
     const vlidationedit=value.filter((item)=>item.done==true)
-    const vlidationadd=value.filter((item)=>item.add==true )
     const vlidationdelete=value.filter((item)=>item.delete==true )
     let login=useSelector(state=>state.Table.login);
 
@@ -30,8 +29,8 @@ function App() {
                 ?<EditTableText date={vlidationedit}/> 
                 :null  
             }
-            {vlidationadd.length>0
-                ?<AddTableText date={vlidationadd}/> 
+            {add==true
+                ?<AddTableText date={value[0]}/> 
                 :null  
             }
              {vlidationdelete.length>0

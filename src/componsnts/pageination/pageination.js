@@ -16,6 +16,7 @@ export function Pageination(props){
     const [dataination,setdataination]=useState([]) ;
     const [curentpage,setcurentpage]=useState(1) ;
     let datalist=useSelector(state=>state.Table.list2);
+    console.log(datalist)
     datalist=datalist.flat();
     // console.log(datalist)
     let eror=useSelector(state=>state.Table.load);
@@ -25,6 +26,8 @@ export function Pageination(props){
     let totalData=datalist.length;
     const pagenumber=[];
     const btnactive='Active';
+
+   
 
 
     // گرفتن داده ها به کمک eventhandler

@@ -5,7 +5,7 @@ const  initialState={
     list:[
         
      ],
-     dragOver:['id','name','quantitiy'],
+     dragOver:['row','name','quantitiy'],
      list2:[],
      list3:[
         {username:"admin",password:"admin"}
@@ -13,7 +13,8 @@ const  initialState={
      login:false,
      errors:"",
      load:false,
-     dataselect:0
+     dataselect:0,
+     add:false
 }
 
 
@@ -26,7 +27,7 @@ const Slice=createSlice({
 
         deletetable:(state , actions)=>{
             state.list=state.list.map(state=>state.map((item)=>{
-                return item.id===actions.payload
+                return item.row===actions.payload
                 ?{...item,delete:!item.delete}
                 :{...item}
             }))
@@ -35,37 +36,37 @@ const Slice=createSlice({
         },
 
         deletetdtable:(state,actions)=>{
-            state.list2=state.list2.map(state=>state.filter((item)=>item.id !== actions.payload));
+            state.list2=state.list2.map(state=>state.filter((item)=>item.row !== actions.payload));
             state.list2.map((item)=>item.map(state=>{
-                return actions.payload>state.id
+                return actions.payload>state.row
                 ?{...state}
-                :state.id=state.id-1
+                :state.row=state.row-1
             }))           
               state.list2.map(item=>console.log(item))
            
-                state.list=state.list.map(state=>state.filter((item)=>item.id !== actions.payload))
+                state.list=state.list.map(state=>state.filter((item)=>item.row !== actions.payload))
               
                  state.list.map((item)=>item.map(state=>{
-                     return actions.payload>state.id
+                     return actions.payload>state.row
                      ?{...state}
-                     :state.id=state.id-1
+                     :state.row=state.row-1
                  }))           
                 
         },
 
         edittable:(state,actions)=>{
         state.list=state.list.map(state=>state.map((item)=>{
-            return item.id===actions.payload
+            return item.row===actions.payload
             ?{...item,done:!item.done}
             :{...item}
         }))
         },
         edittext:(state,actions)=>{
             state.list2=state.list2.map(state=>state.map((item)=>{
-                return item.id === actions.payload.id
+                return item.row === actions.payload.row
                 ?{
                     ...item,
-                    id:actions.payload.id,
+                    row:actions.payload.row,
                     name:actions.payload.name,
                     quantitiy:actions.payload.quantitiy,
                     done:false,
@@ -76,10 +77,10 @@ const Slice=createSlice({
         }));
             
         state.list=state.list.map(state=>state.map((item)=>{
-            return item.id === actions.payload.id
+            return item.row === actions.payload.row
             ?{
                 ...item,
-                id:actions.payload.id,
+                row:actions.payload.row,
                 name:actions.payload.name,
                 quantitiy:actions.payload.quantitiy,
                 done:false,
@@ -90,49 +91,52 @@ const Slice=createSlice({
         },
 
         addtexttd:(state,actions)=>{
+        //     state.list2=state.list2.map(state=>state.map((item)=>{
+        //         return item.row >= actions.payload.row
+        //         ?{
+        //             ...item,
+        //             row:item.row+1
+        //         }   
+        //         :{...item,add:false}
+        //     }));
+            
+        //     const count2=actions.payload.row;
+        //     actions.payload.row=actions.payload.row+1;
+            
+        //    state.list2.map(item=>item.splice(count2,0,actions.payload))
+        //      state.list2.map(item=>console.log(item))
+
+        //    actions.payload.row=actions.payload.row-1;
+        //     state.list=state.list.map(state=>state.map((item)=>{
+        //         return item.row > actions.payload.row
+        //         ?{
+        //             ...item,
+        //             row:item.row+1
+        //         }   
+        //         :{...item,add:false}
+        //     }));
+            
+        //     const count=actions.payload.row;
+
+        //     actions.payload.row=actions.payload.row+1;
+            
+        //    state.list.map(item=>item.splice(count,0,actions.payload))
+
+        //     state.list2.map((item)=>console.log(item));
+            state.list2[0].unshift(actions.payload)
+            state.list[0].unshift(actions.payload)
+            
             state.list2=state.list2.map(state=>state.map((item)=>{
-                return item.id >= actions.payload.id
-                ?{
-                    ...item,
-                    id:item.id+1
-                }   
-                :{...item,add:false}
+                return {...item,row:item.row+1}
             }));
-            
-            const count2=actions.payload.id;
-            actions.payload.id=actions.payload.id+1;
-            
-           state.list2.map(item=>item.splice(count2,0,actions.payload))
-             state.list2.map(item=>console.log(item))
-
-           actions.payload.id=actions.payload.id-1;
             state.list=state.list.map(state=>state.map((item)=>{
-                return item.id > actions.payload.id
-                ?{
-                    ...item,
-                    id:item.id+1
-                }   
-                :{...item,add:false}
+                return {...item,row:item.row+1}
             }));
-            
-            const count=actions.payload.id;
-
-            actions.payload.id=actions.payload.id+1;
-            
-           state.list.map(item=>item.splice(count,0,actions.payload))
-
-            state.list2.map((item)=>console.log(item));
-
+            state.add=!state.add
         },
-        addtdtable:(state,actions)=>{
-            state.list=state.list.map(state=>state.map((item)=>{
-                return item.id===actions.payload
-                ?{...item,add:!item.add}
-                :{...item}
-            }))
-
+        addtdtable:(state)=>{
             
-        
+            state.add=!state.add
          
         },
         getdata:(state,actions)=>{
@@ -152,7 +156,7 @@ const Slice=createSlice({
         },
 
         loginpage:(state,actions)=>{
-            console.log(actions.payload[0])
+            // console.log(actions.payload[0])
                 state.list3.map(item=>
                     item.username===actions.payload[0] && item.password===actions.payload[1]
                         ?state.login=true
